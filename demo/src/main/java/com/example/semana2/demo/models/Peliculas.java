@@ -1,4 +1,4 @@
-package com.example.semana2.demo;
+package com.example.semana2.demo.models;
 
 
 public class Peliculas {

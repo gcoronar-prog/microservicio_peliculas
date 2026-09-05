@@ -1,4 +1,4 @@
-package com.example.semana2.demo;
+package com.example.semana2.demo.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.semana2.demo.models.Peliculas;
 
 @RestController
 public class PeliculasController {
