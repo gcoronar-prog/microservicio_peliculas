@@ -14,7 +14,7 @@ public class Peliculas {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "nombre")
     private String nombre;
@@ -27,17 +27,10 @@ public class Peliculas {
     @Column(name = "sinopsis")
     private String sinopsis;
   
-    public Peliculas(int id, String nombre, String director, int anio, String género, String sinopsis) {
-        this.id = id;
-        this.nombre = nombre;
-        this.director = director;
-        this.anio = anio;
-        this.género = género;
-        this.sinopsis = sinopsis;
-    }
+  
 
     //Getter
-    public int getId() {
+    public Long getId() {
         return id;
     }
     public String getNombre() {
