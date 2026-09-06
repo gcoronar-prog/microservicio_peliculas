@@ -20,6 +20,6 @@ public class PeliculasServiceImp implements PeliculasService {
 
     @Override 
     public Optional<Peliculas> getPeliculaById(Long id){
-        return peliculasRepository.findById((long) id);
+        return peliculasRepository.findById((Long) id);
     }
 }

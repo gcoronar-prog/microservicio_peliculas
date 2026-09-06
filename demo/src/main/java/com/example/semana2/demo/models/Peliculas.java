@@ -13,16 +13,16 @@ public class Peliculas {
     //id, titulo, año, director, género y sinopsis.
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @Column (name = "id_pelicula")
     private Long id;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "titulo")
+    private String titulo;
     @Column(name = "director")
     private String director;
     @Column(name = "anio")
     private int anio;
-    @Column(name = "género")
+    @Column(name = "genero")
     private String género;
     @Column(name = "sinopsis")
     private String sinopsis;
@@ -33,8 +33,8 @@ public class Peliculas {
     public Long getId() {
         return id;
     }
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
     public String getDirector() {
         return director;
