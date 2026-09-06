@@ -24,7 +24,7 @@ public class Peliculas {
     @Column(name = "anio")
     private int anio;
     @Column(name = "genero")
-    private String género;
+    private String genero;
     @Column(name = "sinopsis")
     private String sinopsis;
   
@@ -43,8 +43,8 @@ public class Peliculas {
     public int getAnio() {
         return anio;
     }
-    public String getGénero() {
-        return género;
+    public String getGenero() {
+        return genero;
     }
     public String getSinopsis() {
         return sinopsis;
