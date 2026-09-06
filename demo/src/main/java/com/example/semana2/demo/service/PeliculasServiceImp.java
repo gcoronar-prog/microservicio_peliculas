@@ -15,11 +15,11 @@ public class PeliculasServiceImp implements PeliculasService {
 
     @Override 
     public List<Peliculas> getAllPeliculas(){
-        return peliculasRepository.findAll();
+        return peliculasRepository.findAll(); //FindAll para obtener todos los datos de la tabla peliculas de la base de datos.
     }
 
     @Override 
     public Optional<Peliculas> getPeliculaById(Long id){
-        return peliculasRepository.findById((Long) id);
+        return peliculasRepository.findById((Long) id); //FindById para obtener los datos de la tabla en base a la busqueda por id de pelicula
     }
 }

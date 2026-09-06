@@ -20,12 +20,12 @@ public class PeliculasController {
     private PeliculasService peliculaService;
 
     @GetMapping
-    public List<Peliculas> getPeliculas() {
+    public List<Peliculas> getPeliculas() { //Endpoint para mostrar todas las peliculas de la BD
         return peliculaService.getAllPeliculas();
     }
 
     @GetMapping("/{id}")
-    public Optional<Peliculas> getPeliculaById(@PathVariable Long id) {
+    public Optional<Peliculas> getPeliculaById(@PathVariable Long id) { //Endpoint para mostrar las peliculas segun su id
        return peliculaService.getPeliculaById(id);
     }
 }

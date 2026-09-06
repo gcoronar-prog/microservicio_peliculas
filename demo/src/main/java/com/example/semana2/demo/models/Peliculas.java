@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 @Table(name = "peliculas")
 public class Peliculas {
     //id, titulo, año, director, género y sinopsis.
+    //atributos de la clase y asignacion con anotaciones para la base de datos
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "id_pelicula")
@@ -29,7 +30,7 @@ public class Peliculas {
   
   
 
-    //Getter
+    //Getters
     public Long getId() {
         return id;
     }
