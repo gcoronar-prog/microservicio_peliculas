@@ -22,4 +22,24 @@ public class PeliculasServiceImp implements PeliculasService {
     public Optional<Peliculas> getPeliculaById(Long id){
         return peliculasRepository.findById((Long) id); //FindById para obtener los datos de la tabla en base a la busqueda por id de pelicula
     }
+
+    @Override 
+    public Peliculas createPelicula(Peliculas pelicula){
+        return peliculasRepository.save(pelicula);
+    }
+
+    @Override 
+    public Peliculas updatePelicula (Long id, Peliculas pelicula){
+        if(peliculasRepository.existsById(id)){
+            pelicula.setId(id);
+            return peliculasRepository.save(pelicula);
+        }else{
+            return null;
+        }
+    }
+
+    @Override 
+    public void deletePelicula(Long id){
+        peliculasRepository.deleteById(id);
+    }
 }
