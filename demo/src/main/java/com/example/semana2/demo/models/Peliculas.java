@@ -50,7 +50,7 @@ public class Peliculas {
         return sinopsis;
     }
 
-    //setters
+    //Setters
     public void setId(Long id) {
         this.id = id;
     }
@@ -74,5 +74,5 @@ public class Peliculas {
     public void setSinopsis(String sinopsis) {
         this.sinopsis = sinopsis;
     }
-    
+
 }

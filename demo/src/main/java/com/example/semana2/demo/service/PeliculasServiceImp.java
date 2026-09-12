@@ -25,21 +25,21 @@ public class PeliculasServiceImp implements PeliculasService {
 
     @Override 
     public Peliculas createPelicula(Peliculas pelicula){
-        return peliculasRepository.save(pelicula);
+        return peliculasRepository.save(pelicula); //save para guardar los datos de peliculas en la base de datos
     }
 
     @Override 
     public Peliculas updatePelicula (Long id, Peliculas pelicula){
-        if(peliculasRepository.existsById(id)){
-            pelicula.setId(id);
-            return peliculasRepository.save(pelicula);
+        if(peliculasRepository.existsById(id)){ // se verifica que exista la pelicula a traves de la id
+            pelicula.setId(id); // se asigna la id de la pelicula a actualizar
+            return peliculasRepository.save(pelicula); // se guardan los datos actualizados en la base de datos
         }else{
-            return null;
+            return null; //retorna null si no existe el id de la pelicula a actualizar
         }
     }
 
     @Override 
     public void deletePelicula(Long id){
-        peliculasRepository.deleteById(id);
+        peliculasRepository.deleteById(id); //funcion para eliminar peliculas a traves de su id
     }
 }
