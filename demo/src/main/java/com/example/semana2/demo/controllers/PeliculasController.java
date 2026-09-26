@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.semana2.demo.models.Peliculas;
 import com.example.semana2.demo.service.PeliculasService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping ("/peliculas")
 public class PeliculasController {
@@ -34,12 +36,12 @@ public class PeliculasController {
     }
 
     @PostMapping 
-    public Peliculas creaPelicula(@RequestBody Peliculas pelicula){ //Endpoint para crear una nueva pelicula en la base de datos
+    public Peliculas creaPelicula(@Valid @RequestBody Peliculas pelicula){ //Endpoint para crear una nueva pelicula en la base de datos
         return peliculaService.createPelicula(pelicula);
     }
 
     @PutMapping("/{id}")
-    public Peliculas updatePelicula(@PathVariable Long id, @RequestBody Peliculas pelicula){ //Endpoint para actualizar los datos de una pelicula segun su id
+    public Peliculas updatePelicula(@PathVariable Long id, @Valid @RequestBody Peliculas pelicula){ //Endpoint para actualizar los datos de una pelicula segun su id
         return peliculaService.updatePelicula(id,pelicula);
     }
 
