@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 
 import tools.jackson.databind.ObjectMapper;
@@ -53,7 +53,7 @@ class PeliculaControllerTest {
         pelicula.setId(1L); //asignacion de id
         pelicula.setAnio(2026); //asignacion de año
         pelicula.setDirector("Director de prueba"); //Asignacion de director
-        pelicula.setGenero("Genero de prueba"); //asignacion de genero de pelicula
+        pelicula.setGenero("prueba"); //asignacion de genero de pelicula
         pelicula.setTitulo("Titulo de prueba"); // titulo de la pelicula
         pelicula.setSinopsis("sinopsis de prueba");
     }
@@ -81,6 +81,7 @@ class PeliculaControllerTest {
         mockMvc.perform(post("/peliculas")
             .contentType(MediaType.APPLICATION_JSON)
             .content(mapper.writeValueAsString(pelicula)))
+            .andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().json(mapper.writeValueAsString(pelicula)));
     }
@@ -91,13 +92,14 @@ class PeliculaControllerTest {
         mockMvc.perform(put("/peliculas/1")
         .contentType(MediaType.APPLICATION_JSON)
         .content(mapper.writeValueAsString(pelicula)))
+        .andDo(print())
         .andExpect(status().isOk())
         .andExpect(content().json(mapper.writeValueAsString(pelicula)));
     }
 
     @Test 
     void testDeletePelicula() throws Exception{
-        mockMvc.perform(delete("peliculas/1"))
+        mockMvc.perform(delete("/peliculas/1"))
                 .andExpect(status().isOk());
         verify(service).deletePelicula(1L);
     }

@@ -36,7 +36,6 @@ public class Peliculas {
     @NotNull (message = "El año de la pelicula no puede estar en blanco")
     @Min (value = 1895, message = "El año de la pelicula debe ser mayor a 1895")
     @Max (value = 2026, message = "El año de la pelicula no puede ser mayor a 2026")
-    @Pattern (regexp="^\\d+$",message = "Solo se aceptan numeros")
     @Column(name = "anio")
     private int anio;
 
@@ -46,7 +45,7 @@ public class Peliculas {
     private String genero;
 
     @NotBlank (message = "El contenido de la sinopsis no puede estar en blanco")
-    @Size (min = 30, max = 100, message = "El genero de la pelicula debe contener entre 30 a 100 caracteres")    
+    @Size (min = 10, max = 100, message = "El genero de la pelicula debe contener entre 10 a 100 caracteres")    
     @Column(name = "sinopsis")
     private String sinopsis;
   

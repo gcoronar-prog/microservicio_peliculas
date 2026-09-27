@@ -5,11 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +28,7 @@ import com.example.semana2.demo.service.PeliculasServiceImp;
 @ExtendWith (MockitoExtension.class)
 class PeliculasServiceImpTest {
     
-    @Mock 
+    @Mock
     private PeliculasRepository repository;
 
     @InjectMocks 
@@ -34,7 +38,7 @@ class PeliculasServiceImpTest {
 
     @BeforeEach 
     void setUp(){
-        Peliculas pelicula = new Peliculas();
+        pelicula = new Peliculas();
         pelicula.setId(1L); //asignacion de id
         pelicula.setAnio(2026); //asignacion de año
         pelicula.setDirector("Director de prueba"); //Asignacion de director
@@ -48,27 +52,33 @@ class PeliculasServiceImpTest {
         List<Peliculas> expected = Arrays.asList(pelicula);
         when(repository.findAll()).thenReturn(expected);
         assertEquals(expected, service.getAllPeliculas());
+        verify(repository).findAll();
     }
 
     @Test 
     void testGetPeliculaById(){
         when(repository.findById(1L)).thenReturn(Optional.of(pelicula));
-        assertEquals(Optional.of(pelicula), service);
+        assertEquals(Optional.of(pelicula), service.getPeliculaById(1L));
+        verify(repository).findById(1L);
     }
 
     @Test 
     void testCreatePelicula(){
         when(repository.save(pelicula)).thenReturn(pelicula);
         assertEquals(pelicula, service.createPelicula(pelicula));
+        verify(repository).save(pelicula);
     }
 
     @Test 
     void testUpdatePeliculaExist(){
         when(repository.existsById(1L)).thenReturn(true);
         when(repository.save(pelicula)).thenReturn(pelicula);
+
         Peliculas result = service.updatePelicula(1L, pelicula);
+
         assertEquals(1L, pelicula.getId());
         assertEquals(pelicula, result);
+        verify(repository).existsById(1L);
         verify(repository).save(pelicula);
     }
 
@@ -76,6 +86,7 @@ class PeliculasServiceImpTest {
     void testUpdatePeliculaNotExists(){
         when(repository.existsById(1L)).thenReturn(false);
         assertNull(service.updatePelicula(1L, pelicula));
+        verify(repository).existsById(1L);
         verify(repository, never()).save(any());
     }
 
@@ -84,4 +95,10 @@ class PeliculasServiceImpTest {
         service.deletePelicula(1L);
         verify(repository).deleteById(1L);
     }
+
+    @AfterEach
+    void verificarSinLlamadasExtra() {
+        verifyNoMoreInteractions(repository); 
+    }
+
 }
